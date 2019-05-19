@@ -1,0 +1,16 @@
+// snipped from Compiler Explorer, inspired by Jason Turner, posted by anon.
+//
+#include <initializer_list>
+
+template<typename First, typename ... T>
+First sum(const First &first, const T & ... t) {
+    First result = first;
+    (void)std::initializer_list<First>{ (result += t, 0) ...};
+    return result;
+}
+
+int main(void)
+{    
+    auto s = sum(1,2,3,4);
+    return s;
+}
