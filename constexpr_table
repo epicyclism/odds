@@ -1,0 +1,19 @@
+#include <array>
+
+template<class T,std::size_t N>
+constexpr std::array<T,N> lookUpTable = []
+{
+    std::array<T,N> result{};
+    T nextValue{};
+    for(T& v: result)
+    {
+        v = nextValue * nextValue;
+        ++nextValue;
+    }
+    return result;
+}();
+
+int square(int x)
+{
+    return lookUpTable<int, 1000>[x];
+}
