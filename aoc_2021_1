@@ -1,0 +1,14 @@
+#include <iostream>
+#include <vector>
+#include <span>
+#include <range/v3/range.hpp>
+#include <range/v3/view.hpp>
+#include <range/v3/algorithm/count_if.hpp>
+
+int main()
+{
+    std::vector<int> v{199, 200, 208, 210, 200, 207, 240, 269, 260, 263};
+    auto r = ranges::views::zip(ranges::subrange{v.begin(), v.end() - 3}, ranges::subrange{v.begin() + 3, v.end()});
+
+    std::cout << ranges::count_if(r, [](auto i) -> bool{ return i.first < i.second;}) << "\n";
+}
